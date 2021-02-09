@@ -10,7 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+      home: Scaffold(
+        body: MyHomePage(),
+      ),
     );
   }
 }
@@ -18,24 +20,24 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Builder(
-          builder: (context) {
-            return RaisedButton(
-              onPressed: () {
-                Scaffold.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text("Snack Bar!"),
-                    duration: Duration(seconds: 3),
-                  ),
-                );
-              },
-              child: Text("Click To show SnackBar"),
+    return Center(
+        child: RaisedButton(
+          onPressed: () {
+            Scaffold.of(context).showSnackBar(
+              SnackBar(
+                content: Text("Snack Bar!"),
+                duration: Duration(seconds: 3),
+                action: SnackBarAction(
+                  label: 'Undo',
+                  onPressed: (){
+                    print("Press Button");
+                  },
+                ),
+              ),
             );
           },
-        ),
-      ),
+          child: Text("Click To show SnackBar"),
+        )
     );
   }
 }
