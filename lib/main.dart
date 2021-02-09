@@ -16,22 +16,24 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            _scaffoldKey.currentState.showSnackBar(
-              SnackBar(
-                content: Text("Snack Bar!"),
-                duration: Duration(seconds: 3),
-              ),
+        child: Builder(
+          builder: (context) {
+            return RaisedButton(
+              onPressed: () {
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Snack Bar!"),
+                    duration: Duration(seconds: 3),
+                  ),
+                );
+              },
+              child: Text("Click To show SnackBar"),
             );
           },
-          child: Text("Click To show SnackBar"),
         ),
       ),
     );
